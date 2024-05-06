@@ -31,7 +31,9 @@ public class Finder{
             result.add(origin); 
         else if (origin.isDirectory())
             for( File child : origin.listFiles()){
-                result.addAll(findChilds(child));
+                List<File> actual = findChilds(child);
+                if(actual != null)
+                    result.addAll(actual);
             }
         else
             return null;
