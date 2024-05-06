@@ -1,3 +1,1 @@
-apt-get update && apt-get install -y wget tar && wget -P / https://download.java.net/java/GA/jdk22.0.1/c7ec1332f7bb44aeba2eb341ae18aca4/8/GPL/openjdk-22.0.1_linux-x64_bin.tar.gz && tar xvf /openjdk-22.0.1_linux-x64_bin.tar.gz && rm -rf /openjdk-22.0.1_linux-x64_bin.tar.gz && cd /Grafana-Time-Picker-Traduction && /jdk-22.0.1/bin/java bin/com/mim/grafana/DatePickerTranslator $1 && echo "Traduction réussie" || echo "Echec de la traduction"
-rm -rf jdk-22.0.1
-echo "Fin du script"
+apt-get update && apt-get install -y wget tar && wget -P / https://download.java.net/java/GA/jdk22.0.1/c7ec1332f7bb44aeba2eb341ae18aca4/8/GPL/openjdk-22.0.1_linux-x64_bin.tar.gz && tar xvf /openjdk-22.0.1_linux-x64_bin.tar.gz && rm -rf /openjdk-22.0.1_linux-x64_bin.tar.gz && cd /Grafana-Time-Picker-Traduction && ls && /jdk-22.0.1/bin/java bin/com/mim/grafana/DatePickerTranslator $1 && echo "Traduction réussie" || echo "Echec de la traduction", rm -rf jdk-22.0.1, echo "Fin du script"
