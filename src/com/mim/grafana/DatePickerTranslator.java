@@ -57,7 +57,7 @@ public class DatePickerTranslator {
         }
 
         Finder finder = new Finder(args[0]);
-        finder.filterByExtension("6f.js");
+        finder.filterByExtension(".js");
         finder.filterByContent("This fiscal year so far");
 
         finder.translateAll(translateMap);
