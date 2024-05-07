@@ -2,13 +2,15 @@ package com.mim.grafana;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class DatePickerTranslator {
 
-    private static Map<String,String> translateMap;
+    private static OrderedMap<String,String> translateMap;
     
     static{
-        translateMap = new HashMap<>();
+        translateMap = new OrderedMap<>();
         translateMap.put("Last 5 minutes", "Les 5 dernières minutes");
         translateMap.put("Last 15 minutes", "Les 15 dernières minutes");
         translateMap.put("Last 30 minutes", "Les 30 dernières minutes");
@@ -31,30 +33,37 @@ public class DatePickerTranslator {
         translateMap.put("Previous week", "La semaine dernière");
         translateMap.put("Previous month", "Le mois dernier");
         translateMap.put("Previous fiscal quarter", "Le dernier trimestre fiscal");
-        translateMap.put("Previous year", "L'année dernière");
-        translateMap.put("Previous fiscal year", "La dernière année fiscale");
-        translateMap.put("Today", "Aujourd'hui");
-        translateMap.put("Today so far", "Aujourd'hui jusqu'à présent");
+        translateMap.put("\"Previous year\"", "`L'année dernière`"); 
+        translateMap.put("Previous fiscal year", "La dernière année fiscale"); 
+        translateMap.put("\"Today so far\"", "`Aujourd'hui jusqu'à présent`"); 
+        translateMap.put("\"Today\"", "`Aujourd'hui`"); 
+        translateMap.put("\"This week so far\"", "`Cette semaine jusqu'à présent`"); 
         translateMap.put("This week", "Cette semaine");
-        translateMap.put("This week so far", "Cette semaine jusqu'à présent");
+        translateMap.put("\"This month so far\"", "`Ce mois jusqu'à présent`"); 
         translateMap.put("This month", "Ce mois");
-        translateMap.put("This month so far", "Ce mois jusqu'à présent");
+        translateMap.put("\"This year so far\"", "`Cette année jusqu'à présent`");  
         translateMap.put("This year", "Cette année");
-        translateMap.put("This year so far", "Cette année jusqu'à présent");
+        translateMap.put("\"This fiscal quarter so far\"", "`Ce trimestre fiscal jusqu'à présent`"); 
         translateMap.put("This fiscal quarter", "Ce trimestre fiscal");
-        translateMap.put("This fiscal quarter so far", "Ce trimestre fiscal jusqu'à présent");
+        translateMap.put("\"This fiscal year so far\"", "`Cette année fiscal jusqu'à présent`"); 
         translateMap.put("This fiscal year", "Cette année fiscal");
-        translateMap.put("This fiscal year so far", "Cette année fiscal jusqu'à présent");
     }
 
     public static void main(String[] args) {
+
+        if(args.length == 0){
+            System.out.println("Erreur : Ancun argument passé en paramètre");
+            return;
+        }
+
         Finder finder = new Finder(args[0]);
-        finder.filterByExtension(".js");
-        finder.filterByContent("Last 30 minutes");
+        finder.filterByExtension("6f.js");
+        finder.filterByContent("This fiscal year so far");
 
         finder.translateAll(translateMap);
 
         finder.printFiles();
+
         System.out.println("=> FIN");
     }
 }

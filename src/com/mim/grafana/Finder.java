@@ -2,16 +2,14 @@ package com.mim.grafana;
 
 import java.io.File;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.SortedMap;
+import java.util.SortedSet;
 
 public class Finder{
-    private File base;
     private List<File> childsFile;
 
 
@@ -20,7 +18,6 @@ public class Finder{
     }
 
     public Finder(File base) {
-        this.base = base;
         childsFile = findChilds(base);
     }
 
@@ -66,7 +63,7 @@ public class Finder{
         childsFile = result;
     }
 
-    public void translateAll(Map<String,String> translateMap){
+    public void translateAll(OrderedMap<String,String> translateMap){
         for(File f : childsFile){
             try(Scanner sc = new Scanner(f)){
                 StringBuilder inner = new StringBuilder();
@@ -74,7 +71,7 @@ public class Finder{
                     inner.append(sc.nextLine() + "\n");
                 }
                 String s = inner.toString();
-                for(String key : translateMap.keySet()){
+                for(String key : translateMap.keyList()){
                     s = s.replace(key, translateMap.get(key));
                 }
                 PrintWriter writer = new PrintWriter(f);
@@ -94,6 +91,11 @@ public class Finder{
         }
     }
 
-    
+    public static void main(String[] args) {
+        Finder f = new Finder("C:\\Users\\Baptiste\\Desktop\\GrafanaGit");
+        f.filterByContent("Last 30 days");
+        f.printFiles();
+        System.out.println("FIN");
+    }
 
 }
